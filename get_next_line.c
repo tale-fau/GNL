@@ -41,27 +41,22 @@ static char	*ft_join_gnl(char *str, char *buffer)
 static char	*ft_get_first_line(char *str)
 {
 	int		i;
-	int		len;
 	char	*ret;
 
 	i = 0;
-	len = 0;
 	if (!str)
 		return (NULL);
 	while (str[i] && str[i] != '\n')
-	{
-		len++;
 		i++;
-	}
-	i = 0;
-	if ((ret = (char *)malloc(sizeof(char) * (len + 1))) == NULL)
+	if ((ret = (char *)malloc(sizeof(char) * (i + 1))) == NULL)
 		return (NULL);
+	i = 0;
 	while (str[i] && str[i] != '\n')
 	{
 		ret[i] = str[i];
 		i++;
 	}
-	ret[len] = '\0';
+	ret[i] = '\0';
 	return (ret);
 }
 
