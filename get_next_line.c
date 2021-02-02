@@ -6,11 +6,12 @@
 /*   By: tale-fau <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/01 11:41:28 by tale-fau          #+#    #+#             */
-/*   Updated: 2021/02/01 14:52:51 by tale-fau         ###   ########.fr       */
+/*   Updated: 2021/02/02 10:52:45 by tale-fau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
+#include <string.h>
 
 static char	*ft_join_gnl(char *str, char *buffer)
 {
@@ -24,12 +25,17 @@ static char	*ft_join_gnl(char *str, char *buffer)
 	i = 0;
 	len_str = ft_strlen(str);
 	len_totale = len_str + ft_strlen(buffer);
+//	printf("len totale = %i\n", len_totale);
 	if ((newline = (char *)malloc(sizeof(char) * (len_totale + 1))) == NULL)
 		return (NULL);
+	bzero(newline, (len_totale + 1));
+//	printf(" ***** newline avant cpy = %s\n", newline);
 	if (str)
-		ft_strcat(newline, buffer);
-	else
-		ft_strcpy(newline, buffer);
+		ft_strcpy(newline, str);
+//	printf(" ***** newline apres cpy= %s\n", newline);
+	ft_strcat(newline, buffer);
+//	printf("BUFFER = %s\n", buffer);
+//	printf(" ///////// str apres cat = %s\n", newline);
 	free((char*)str);
 	return (newline);
 }
@@ -73,11 +79,12 @@ static char	*ft_get_remain(char *str)
 	i = 0;
 	len = 0;
 	remain_len = 0;
-	while (str[i] && str[i] != '\0')
+	while (str[i] && str[i] != '\n')
 	{
 		len++;
 		i++;
 	}
+	printf("len=%d\n", len);
 	if (str[i] == '\0')
 	{
 		free(str);
@@ -99,13 +106,14 @@ int			get_next_line(int fd, char **line)
 	static char	*str;
 	char		*buffer;
 
+	ret_read = 1;
 	if (!line || fd < 0 || BUFFER_SIZE <= 0)
 		return (-1);
 	if ((buffer = (char *)malloc(sizeof(char) * (BUFFER_SIZE + 1))) == NULL)
 		return (-1);
 	while (!ft_check(str) && ret_read != 0)
 	{
-		if ((ret_read = read(fd, buffer, BUFFER_SIZE) == -1))
+		if ((ret_read = read(fd, buffer, BUFFER_SIZE)) == -1)
 		{
 			free(buffer);
 			return (-1);

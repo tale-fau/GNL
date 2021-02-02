@@ -3,41 +3,34 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tale-fau <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: mdupuis <mdupuis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/02/01 14:46:07 by tale-fau          #+#    #+#             */
-/*   Updated: 2021/02/01 14:52:53 by tale-fau         ###   ########.fr       */
+/*   Created: 2021/01/05 18:47:04 by mdupuis           #+#    #+#             */
+/*   Updated: 2021/01/11 18:55:38 by mdupuis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 #include <stdio.h>
+#include <sys/types.h>
+#include <sys/stat.h>
 #include <fcntl.h>
-#include <stdlib.h>
 
-int		main(int ac, char **av)
+int			main(int argc, char **argv)
 {
-	int		fd1;
-	int		fd2;
-	int		ret;
-	char	*line;
+	char *line;
+	int fd;
+	int ret = 0;
 
-	fd1 = open(av[ac - 2], O_RDONLY);
-	while ((ret = get_next_line(fd1, &line)) > 0)
+	if (argc != 2)
+		return (0);
+	fd = 0;
+	fd = open(argv[1], O_RDONLY);
+	while ((ret = get_next_line(fd, &line)) > 0)
 	{
 		printf("%s\n", line);
 		free(line);
 	}
 	free(line);
-	printf("%d\n\n", ret);
-	ret = 0;
-	fd2 = open(av[ac - 1], O_RDONLY);
-	while ((ret = get_next_line(fd2, &line)) > 0)
-	{
-		printf("%s\n", line);
-		free(line);
-	}
-	free(line);
-	printf("%d\n", ret);
 	return (0);
 }

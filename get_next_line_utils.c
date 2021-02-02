@@ -6,7 +6,7 @@
 /*   By: tale-fau <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/01 10:31:24 by tale-fau          #+#    #+#             */
-/*   Updated: 2021/02/01 14:52:47 by tale-fau         ###   ########.fr       */
+/*   Updated: 2021/02/02 10:07:07 by tale-fau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ int		ft_strlen(char *str)
 {
 	int	i;
 
+	if (!str)
+		return (0);
 	i = 0;
 	while (str[i])
 		i++;
@@ -26,9 +28,12 @@ char	*ft_strcpy(char *dest, char *src)
 {
 	int	i;
 
-	i = -1;
-	while (src[++i])
+	i = 0;
+	while (src[i])
+	{
 		dest[i] = src[i];
+		i++;
+	}
 	dest[i] = '\0';
 	return (dest);
 }
