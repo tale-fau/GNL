@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-#include <string.h>
 
 static char	*ft_join_gnl(char *str, char *buffer)
 {
