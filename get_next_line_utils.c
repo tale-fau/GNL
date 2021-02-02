@@ -69,3 +69,12 @@ int		ft_check(char *str)
 			return (1);
 	return (0);
 }
+
+void	ft_init(void *s, int c, size_t n)
+{
+	size_t	i;
+
+	i = 0;
+	while (i < n)
+		((unsigned char *)s)[i++] = (unsigned char)c;
+}

@@ -15,20 +15,18 @@
 
 static char	*ft_join_gnl(char *str, char *buffer)
 {
-	int		i;
 	int		len_str;
 	int		len_totale;
 	char	*newline;
 
 	if (!buffer)
 		return (NULL);
-	i = 0;
 	len_str = ft_strlen(str);
 	len_totale = len_str + ft_strlen(buffer);
 //	printf("len totale = %i\n", len_totale);
 	if ((newline = (char *)malloc(sizeof(char) * (len_totale + 1))) == NULL)
 		return (NULL);
-	bzero(newline, (len_totale + 1));
+	ft_init(newline, 0, (len_totale + 1));
 //	printf(" ***** newline avant cpy = %s\n", newline);
 	if (str)
 		ft_strcpy(newline, str);

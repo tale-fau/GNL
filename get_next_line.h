@@ -22,5 +22,5 @@ int			ft_strlen(char *str);
 char		*ft_strcpy(char *dest, char *src);
 char		*ft_strcat(char *dest, char *src);
 int			ft_check(char *str);
-
+void		ft_init(void *s, int c, size_t n);
 #endif
