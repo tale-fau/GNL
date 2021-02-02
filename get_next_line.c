@@ -22,17 +22,12 @@ static char	*ft_join_gnl(char *str, char *buffer)
 		return (NULL);
 	len_str = ft_strlen(str);
 	len_totale = len_str + ft_strlen(buffer);
-//	printf("len totale = %i\n", len_totale);
 	if ((newline = (char *)malloc(sizeof(char) * (len_totale + 1))) == NULL)
 		return (NULL);
 	ft_init(newline, 0, (len_totale + 1));
-//	printf(" ***** newline avant cpy = %s\n", newline);
 	if (str)
 		ft_strcpy(newline, str);
-//	printf(" ***** newline apres cpy= %s\n", newline);
 	ft_strcat(newline, buffer);
-//	printf("BUFFER = %s\n", buffer);
-//	printf(" ///////// str apres cat = %s\n", newline);
 	free((char*)str);
 	return (newline);
 }
@@ -76,7 +71,6 @@ static char	*ft_get_remain(char *str)
 		len++;
 		i++;
 	}
-	printf("len=%d\n", len);
 	if (str[i] == '\0')
 	{
 		free(str);
@@ -85,6 +79,7 @@ static char	*ft_get_remain(char *str)
 	remain_len = ft_strlen(str) - len;
 	if ((ret = (char *)malloc(sizeof(char) * (remain_len + 1))) == NULL)
 		return (NULL);
+	i = 0;
 	while (str[++len])
 		ret[i++] = str[len];
 	ret[i] = '\0';
