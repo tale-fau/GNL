@@ -6,7 +6,7 @@
 /*   By: tale-fau <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/01 11:41:28 by tale-fau          #+#    #+#             */
-/*   Updated: 2021/02/02 10:52:45 by tale-fau         ###   ########.fr       */
+/*   Updated: 2021/02/03 10:18:07 by tale-fau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,12 +66,9 @@ static char	*ft_get_remain(char *str)
 	i = 0;
 	len = 0;
 	remain_len = 0;
-	while (str[i] && str[i] != '\n')
-	{
+	while (str[len] && str[len] != '\n')
 		len++;
-		i++;
-	}
-	if (str[i] == '\0')
+	if (str[len] == '\0')
 	{
 		free(str);
 		return (NULL);
@@ -79,7 +76,6 @@ static char	*ft_get_remain(char *str)
 	remain_len = ft_strlen(str) - len;
 	if ((ret = (char *)malloc(sizeof(char) * (remain_len + 1))) == NULL)
 		return (NULL);
-	i = 0;
 	while (str[++len])
 		ret[i++] = str[len];
 	ret[i] = '\0';
